@@ -11,14 +11,13 @@ body {
   margin: 0;
 }
 
-.root {
-  display: flex;
-  height: 100vh;
-  min-height: 47vw;
+.fullpage {
   /* Header height */
   padding-top: 4rem;
   /* Footer height */
   padding-bottom: 0;
+  height: 100vh;
+  min-height: 47vw;
 }
 *,
 *::before,
@@ -42,7 +41,7 @@ body {
     width: 1536px;
     margin: auto;
   }
-  .root {
+  .fullpage {
     min-height: 720px;
   }
 }

@@ -1,41 +1,60 @@
+<script setup>
+import { ref } from "vue";
+import BottomBlock from "./BottomBlock.vue";
+
+const isDesktop = ref(window?.innerWidth > 1024);
+
+</script>
 <template>
-  <div class="root">
-    <div class="intro">
-      <div class="intro-top app-padding">
+  <div :class="['fullpage', { 'column-view': !isDesktop }]">
+    <div class="root">
+      <div class="intro">
+        <div class="intro-top app-padding">
 
-        <div style="flex-grow:0.5"></div>
-        <h1>Hi! I Am <span class="highlight">UI/UX</span><br />Johnson Ogbonna</h1>
-        <p class="profile-description">Nigeria based UX designer with passion for creating
-          enjoyable user centered products. Currently working
-          as a freelancer.</p>
+          <div style="flex-grow:0.5"></div>
+          <h1>Hi! I Am <span class="highlight">UI/UX</span><br />Johnson Ogbonna</h1>
+          <p class="profile-description">Nigeria based UX designer with passion for creating
+            enjoyable user centered products. Currently working
+            as a freelancer.</p>
 
-        <div style="flex-grow:0.5"></div>
-        <div>
-          <app-button>Hire Me</app-button>
-          <app-button variant="flat">Projects<img class="app-button-icon" src="../../assets/arrow_outward.svg"
-              onerror="this.src='../../assets/arrow_outward.png'"></app-button>
+          <div style="flex-grow:0.5"></div>
+          <div>
+            <app-button>Hire Me</app-button>
+            <app-button variant="flat">Projects<img class="app-button-icon" src="../../assets/arrow_outward.svg"
+                onerror="this.src='../../assets/arrow_outward.png'"></app-button>
+          </div>
+          <div v-if="!isDesktop" class="img-section">
+
+            <img src="@/assets/profile.png" class="logo-image" />
+
+          </div>
+          <div style="flex-grow:1"></div>
+          <h2>Contact</h2>
+          <p>artspire@gmail.com | +234 906 1697 773</p>
         </div>
-        <div style="flex-grow:1"></div>
-        <h2>Contact</h2>
-        <p>artspire@gmail.com | +234 906 1697 773</p>
+        <BottomBlock v-if="isDesktop" />
+
       </div>
-      <div class="bottom-block app-padding">
-        <h2>Projects Statistics 2023</h2>
-        <ul class="stat-block">
-          <li>Website Design <span class="stat-value">5</span></li>
-          <li>Mobile App Design <span class="stat-value">2</span></li>
-          <li>Branding <span class="stat-value">100</span></li>
-        </ul>
+      <div v-if="isDesktop" class="img-section">
+
+        <img src="@/assets/profile.png" class="logo-image" />
+
       </div>
     </div>
-    <div class="img-section">
-
-      <img src="@/assets/profile.png" class="logo-image" />
-
-    </div>
+    <div v-if="!isDesktop" style="flex-grow:1"></div>
+    <BottomBlock v-if="!isDesktop" />
   </div>
 </template>
 <style scoped>
+.column-view {
+  display: flex;
+  flex-direction: column;
+}
+
+.root {
+  display: flex;
+}
+
 .app-button-icon {
   margin: 0 0.5em;
   vertical-align: baseline;
@@ -76,7 +95,7 @@ h1+p {
 
 .img-section {
   width: auto;
-  max-width: 50%;
+  max-width: 45%;
   min-width: 35%;
   position: relative;
   background: #00072C;
@@ -132,42 +151,5 @@ h1+p {
   font-size: 0.95rem;
   line-height: 173.4%;
   /* or 42px */
-}
-
-.bottom-block {
-  background: #00072C;
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-}
-
-.bottom-block>h2 {
-  font-family: 'Montserrat';
-  font-style: normal;
-  margin: 0;
-  font-weight: 500;
-  font-size: 1.25rem;
-  line-height: 139.4%;
-  padding-right: 32px;
-  max-width: 9.5em;
-  /* or 45px */
-}
-
-.stat-block {
-  flex-grow: 1;
-  flex-basis: 55%;
-  border-left: 16px solid #ff9900;
-}
-
-.stat-value {
-  float: right;
-}
-
-.stat-block>li {
-  border-bottom: 1px solid white;
-  list-style: none;
-  font-size: 0.875rem;
-  padding: 0.5rem 0 0.25rem;
-  margin: -0.5rem 0 0.5rem;
 }
 </style>

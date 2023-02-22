@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import AppLogo from "./AppLogo.vue"
 const links = [{
@@ -16,9 +17,11 @@ const links = [{
   icon: "M1.625 15C1.15833 15 0.771 14.846 0.463 14.538C0.154333 14.2293 0 13.8417 0 13.375V11H1V13.375C1 13.5417 1.06267 13.6873 1.188 13.812C1.31267 13.9373 1.45833 14 1.625 14H12.375C12.5417 14 12.6873 13.9373 12.812 13.812C12.9373 13.6873 13 13.5417 13 13.375V11H14V13.375C14 13.8417 13.846 14.2293 13.538 14.538C13.2293 14.846 12.8417 15 12.375 15H1.625ZM7 11.225L3.45 7.69999L4.175 6.97499L6.5 9.29999V0.649994H7.5V9.29999L9.825 6.97499L10.55 7.69999L7 11.225Z"
 
 }]
+
+const isDesktop = ref(window?.innerWidth > 1024);
 </script>
 <template>
-  <nav class="app-padding nav-bar">
+  <nav v-if="!isDesktop" class="app-padding nav-bar">
     <AppLogo>Artspire_Jay</AppLogo>
     <div style="flex-grow:1"></div>
     <RouterLink v-for="url of links" :key="url.href" :to="url.href"
@@ -28,6 +31,7 @@ const links = [{
       </svg>
     </RouterLink>
   </nav>
+  <AppLogo v-else>Artspire_Jay</AppLogo>
 </template>
 <style scoped>
 .nav-bar {
@@ -48,7 +52,7 @@ const links = [{
   font-weight: 400;
   font-size: 1rem;
   line-height: 31px;
-  margin-left: 32px;
+  margin-left: 3rem;
   padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
   /* Deep Color */
@@ -56,6 +60,7 @@ const links = [{
   color: #162574;
   text-decoration: none;
 }
+
 
 .header-download-link {
   border: 1px solid #3D5CFA;
