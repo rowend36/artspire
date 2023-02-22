@@ -1,0 +1,55 @@
+:root {
+  font-size: 16px;
+}
+@media (min-width: 1440px) {
+  :root {
+    font-size: 18px;
+  }
+}
+
+body {
+  margin: 0;
+}
+
+.root {
+  display: flex;
+  height: 100vh;
+  min-height: 47vw;
+  /* Header height */
+  padding-top: 4rem;
+  /* Footer height */
+  padding-bottom: 0;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.app-padding {
+  padding: 0.875rem 64px;
+  margin: 0;
+}
+@media (min-width: 1280px) {
+  .app-padding {
+    padding-left: 120px;
+    padding-right: 120px;
+  }
+}
+
+@media (min-width: 1536px) {
+  body {
+    width: 1536px;
+    margin: auto;
+  }
+  .root {
+    min-height: 720px;
+  }
+}
+body {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  color: #162574;
+  line-height: 173.4%;
+}

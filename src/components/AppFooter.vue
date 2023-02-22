@@ -1,3 +1,3 @@
-<template>
-  This is my footer.
+<template><!--Nothing for now-->
+  <span></span>
 </template>
