@@ -25,10 +25,18 @@ body {
   box-sizing: border-box;
 }
 
+
 .app-padding {
-  padding: 0.875rem 64px;
+  padding: 32px;
   margin: 0;
 }
+
+@media (min-width: 600px) {
+  .app-padding {
+    padding: 0.875rem 64px;
+  }
+}
+
 @media (min-width: 1280px) {
   .app-padding {
     padding-left: 120px;

@@ -32,6 +32,7 @@ defineProps({
   color: white;
 }
 
+.btn-icon,
 .btn-flat {
   background: none;
   font-weight: 500;
@@ -43,5 +44,9 @@ defineProps({
   /* Deep Color */
 
   color: #162574;
+}
+.btn-icon {
+  padding: 0.75em;
+  line-height: 100%;
 }
 </style>
