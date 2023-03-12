@@ -1,5 +1,11 @@
+<script setup>
+import {
+    RouterLink
+  } from "vue-router";
+</script>
+
 <template>
-  <span class="app-logo">Artspire_Jay<span class="dot"></span></span>
+  <RouterLink class="app-logo" to="/">Artspire_Jay<span class="dot"></span></RouterLink>
 </template>
 
 <style scoped>
@@ -10,11 +16,19 @@
   font-weight: 700;
   font-size: 1.5rem;
   line-height: 51px;
+  text-decoration: none;
 
   /* Deep Color */
 
   color: #162574;
 }
+
+@media (max-width:599px){
+  .app-logo{
+    font-size: 1.2rem;
+  }
+}
+
 
 .dot {
   display: inline-block;

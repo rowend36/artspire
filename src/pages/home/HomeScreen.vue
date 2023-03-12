@@ -22,9 +22,9 @@
           <h1>Hi! I Am <span class="highlight">UI/UX</span><br />{{HomeData.name}}</h1>
           <p class="profile-description">{{HomeData.description}}</p>
           <div v-if='isWideScreen' style="flex-grow:0.5"></div>
-          <div>
-            <app-button>Hire Me</app-button>
-            <app-button variant="flat">Projects<img class="app-button-icon" src="../../assets/arrow_outward.svg" onerror="this.src='../../assets/arrow_outward.png'"></app-button>
+          <div class='home-buttons'>
+				  <RouterLink to='/hire_me'><app-button>Hire Me</app-button></RouterLink>
+				  <RouterLink to ='/projects'><app-button variant="flat">Projects<img class="app-button-icon" src="../../assets/arrow_outward.svg" onerror="this.src='../../assets/arrow_outward.png'"></app-button></RouterLink>
           </div>
           <div class="img-section" v-if="isMobile">
             <img src="@/assets/profile.png" class="logo-image" />
@@ -61,6 +61,13 @@
     vertical-align: baseline;
     width: 0.75em;
     height: 0.75em;
+  }
+  
+  @media (max-width:599px){
+    .home-buttons{
+	  display: flex;
+	  justify-content: space-around;
+	}
   }
 
   h1 {
