@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import AppLogo from "./AppLogo.vue"
 const links = [{
-  href: "/home",
+  href: "/",
   name: "Home"
 }, {
   href: "/projects",
@@ -21,29 +21,41 @@ const links = [{
 const isDesktop = ref(window?.innerWidth > 1024);
 </script>
 <template>
-  <nav v-if="!isDesktop" class="app-padding nav-bar">
+  <nav v-if="isDesktop" class="app-padding nav-bar">
     <AppLogo>Artspire_Jay</AppLogo>
     <div style="flex-grow:1"></div>
-    <RouterLink v-for="url of links" :key="url.href" :to="url.href"
-      :class="['header-link', { 'header-download-link': !!url.icon }]">{{ url.name }}
+    <RouterLink v-for="url of links" :key="url.href" :to="url.href" activeClass="active-header-link"
+      :class="['header-link', { 'header-download-link': !!url.icon }]">{{
+        url.name }}
       <svg v-if="url.icon" width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path :d="url.icon" fill="#162574" />
       </svg>
     </RouterLink>
   </nav>
-  <AppLogo v-else>Artspire_Jay</AppLogo>
+  <nav v-else class="app-padding nav-bar">
+    <AppLogo>Artspire_Jay</AppLogo>
+  </nav>
 </template>
 <style scoped>
 .nav-bar {
   display: flex;
   align-items: center;
-  position: absolute;
   top: 0;
   width: 100%;
+  position: fixed;
+  background: white;
+  z-index: 20;
   left: 0;
   padding-top: 0;
   padding-bottom: 0;
   height: 4rem;
+}
+
+@media (min-width:1920px) {
+  .nav-bar {
+    width: 1920px;
+    left: calc(50vw - 960px);
+  }
 }
 
 .header-link {
@@ -61,6 +73,9 @@ const isDesktop = ref(window?.innerWidth > 1024);
   text-decoration: none;
 }
 
+.active-header-link {
+  color: #3D5CFA;
+}
 
 .header-download-link {
   border: 1px solid #3D5CFA;

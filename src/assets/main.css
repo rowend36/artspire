@@ -36,9 +36,9 @@ body {
   }
 }
 
-@media (min-width: 1536px) {
+@media (min-width: 1920px) {
   body {
-    width: 1536px;
+    width: 1920px;
     margin: auto;
   }
   .fullpage {

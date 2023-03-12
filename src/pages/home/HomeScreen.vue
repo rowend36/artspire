@@ -53,6 +53,7 @@ const isDesktop = ref(window?.innerWidth > 1024);
 
 .root {
   display: flex;
+  height: 100%;
 }
 
 .app-button-icon {
