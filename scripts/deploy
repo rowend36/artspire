@@ -1,0 +1,11 @@
+#!/bin/sh
+yarn run build
+git checkout dist || exit
+rm -r assets
+cp -r dist/* .
+git add .
+echo "Enter commit message >"
+read message
+git commit -m "$message"
+git push
+git checkout main
