@@ -50,6 +50,7 @@
         <path :d="url.icon" fill="#162574" />
       </svg>
     </RouterLink>
+	<div style='flex-grow:1'></div>
     <AppLogo />
   </nav>
 </template>
@@ -85,9 +86,6 @@
   }
 
 @media (max-width: 599.99px) {
-    .nav-bar {
-      justify-content: space-between;
-    }
     .header-link {
       margin-left: 0;
     }
