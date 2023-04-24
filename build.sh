@@ -23,7 +23,7 @@ mv dist/* . &&
 pcho "Commit and Deploy" &&
 git add . &&
 git commit -m "feat: deploy ${date}" &&
-echo rowend| git push
+git push
 
 pcho "Return to previous branch"
 git checkout main
