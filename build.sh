@@ -13,17 +13,18 @@ git add -u &&
 pcho "Checkout deploy" &&
 git checkout dist &&
 
+# Deploy
 pcho "Remove old files" &&
 rm -rf assets &&
 
 pcho "Update files" &&
-mv -r dist/* . &&
+mv dist/* . &&
 
 pcho "Commit and Deploy" &&
 git add . &&
 git commit -m "feat: deploy ${date}" &&
-echo rowend| git push &&
+echo rowend| git push
 
-pcho "Return to previous branch" &&
+pcho "Return to previous branch"
 git checkout main
 
