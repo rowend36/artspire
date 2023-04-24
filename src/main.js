@@ -6,9 +6,8 @@ import ThemedButton from "./components/ThemedButton.vue";
 import router from "./router";
 
 import "./assets/main.css";
-import eruda from "eruda";
 
-eruda.init([]);
+if (import.meta.env.DEV) (await import("eruda")).init([]);
 const app = createApp(App);
 
 app.use(createPinia());
