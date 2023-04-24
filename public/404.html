@@ -7,7 +7,7 @@
 
 <body></body>
 <script>
-  const segments = window.location.pathname.split("/");
+  const segments = window.location.pathname.split("/").filter(Boolean);
   window.location.href = `/${segments[0]}/#${segments.slice(1).join("/")}`
 </script>
 
