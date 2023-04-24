@@ -1,3 +1,4 @@
+cd $(git worktree list|awk '{print $1}')
 function pcho(){
   echo ""
   echo "<<< $@ >>>"

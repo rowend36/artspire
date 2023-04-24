@@ -7,7 +7,10 @@ import router from "./router";
 
 import "./assets/main.css";
 
-if (import.meta.env.DEV) (await import("eruda")).init([]);
+if (import.meta.env.DEV) {
+  (await import("eruda")).init([]);
+  console.log("Init eruda");
+}
 const app = createApp(App);
 
 app.use(createPinia());
