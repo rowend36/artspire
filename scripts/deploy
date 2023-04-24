@@ -1,11 +1,30 @@
-#!/bin/sh
-yarn run build
-git checkout dist || exit
-rm -r assets
-cp -r dist/* .
-git add .
-echo "Enter commit message >"
-read message
-git commit -m "$message"
+function pcho(){
+  echo ""
+  echo "<<< $@ >>>"
+}
+
+pcho "Compiling" &&
+yarn build &&
+
+pcho "Save changes" &&
+git add -u &&
+(git commit -m "Automatic commit" || true) &&
+
+pcho "Checkout deploy" &&
+git checkout dist &&
+
+# Deploy
+pcho "Remove old files" &&
+rm -rf assets &&
+
+pcho "Update files" &&
+mv dist/* . &&
+
+pcho "Commit and Deploy" &&
+git add . &&
+git commit -m "feat: deploy ${date}" &&
 git push
+
+pcho "Return to previous branch"
 git checkout main
+
