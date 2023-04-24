@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+</head>
+
+<body></body>
+<script>
+  const segments = window.location.pathname.split("/");
+  window.location.href = `/${segements[0]}/#${segements.slice(1).join("/")}`
+</script>
+
+</html>
