@@ -6,6 +6,7 @@ const router = createRouter({
   routes: [
     {
       path: "/",
+      alias: "/home",
       name: "home",
       component: HomeView,
       beforeEnter: handle404,
