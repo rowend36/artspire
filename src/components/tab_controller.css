@@ -1,7 +1,6 @@
 .tabs {
   display: flex;
   max-width: 100%;
-  padding: 0;
   --border-radius: 0.75em;
   --line-height: 1.5em;
   --padding-y: 0.5em;
@@ -13,8 +12,6 @@
   --reduced-padding-x: calc(var(--padding-x) - var(--border-allowance));
 }
 
-
-
 .tab {
   white-space: nowrap;
   text-align: center;
@@ -25,11 +22,11 @@
   /* Tab height */
   height: var(--height);
   /* Inactive items show only bottom border. Use negative margins to make ends overlap. */
-  border: 1px solid transparent;
-  border-bottom-color: #3D5CFA;
+  border: 1.5px solid transparent;
+  border-bottom-color: #3d5cfa;
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
-  margin: 0 -1px;
+  margin: 0 -1.5px;
   cursor: pointer;
 }
 
@@ -44,26 +41,25 @@
   padding-right: var(--reduced-padding-x);
 }
 
-@media (max-width: 599px){
+@media (max-width: 599.99px) {
   .tabs {
     --padding-x: 1em;
-	overflow: auto;
-	font-size: 0.875em;
+    overflow: auto;
+    font-size: var(--font-xs);
   }
   .tab {
-     flex-grow: 1;
+    flex-grow: 1;
   }
-  .empty-tab{
+  .empty-tab {
     max-width: 0;
   }
-  
 }
 
 .tab-active {
   /* Hide bottom border. Show other borders.*/
-  border-top-color: #3D5CFA;
-  border-left-color: #3D5CFA;
-  border-right-color: #3D5CFA;
+  border-top-color: #3d5cfa;
+  border-left-color: #3d5cfa;
+  border-right-color: #3d5cfa;
   border-bottom-style: none;
   /*Reduce height of element so that bottom end of the side borders don't show behind pseudo elements. Tab height - border-radius */
   height: var(--reduced-height);
@@ -77,7 +73,7 @@
 .tab::after {
   content: "";
   position: absolute;
-  border: 1px none #3D5CFA;
+  border: 1.5px none #3d5cfa;
   /* Needed so that edges align without using calc */
   box-sizing: content-box;
   /*Allow for the border-radius of parent element. 0.7071 * border-radius*/

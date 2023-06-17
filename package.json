@@ -11,8 +11,11 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@fakerjs/faker": "^3.0.0",
     "eruda": "^2.11.3",
+    "normalize.css": "^8.0.1",
     "pinia": "^2.0.28",
+    "swrv": "^1.0.3",
     "vue": "^3.2.45",
     "vue-material-design-icons": "^5.2.0",
     "vue-router": "^4.1.6"

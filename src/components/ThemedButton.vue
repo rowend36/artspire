@@ -9,7 +9,7 @@ defineProps({
 </script>
 
 <template>
-  <button :class="['themed-btn', `btn-${variant}`]">
+  <button :class="['themed-btn', variant === 'elevated' ? 'grotesk' : '', `btn-${variant}`]">
     <slot></slot>
   </button>
 </template>
@@ -24,10 +24,7 @@ defineProps({
 }
 
 .btn-elevated {
-  font-family: 'Space Grotesk';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1rem;
+  font-size: var(--font-md);
   background: #3D5CFA;
   color: white;
 }
@@ -36,15 +33,14 @@ defineProps({
 .btn-flat {
   background: none;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: var(--font-md);
   line-height: 173.4%;
-  /* identical to box height, or 50px */
-
 
   /* Deep Color */
 
-  color: #162574;
+  color: var(--primary);
 }
+
 .btn-icon {
   padding: 0.75em;
   line-height: 100%;

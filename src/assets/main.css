@@ -1,37 +1,129 @@
+/*
+  Responsive font sizes
+*/
 :root {
   font-size: 16px;
+  --font-xs: 0.875rem;
+  --font-sm: 0.95rem;
+  --font-md: 1rem;
+  --font-lg: 1.125rem;
+  --font-xl: 1.25rem;
+  --font-2xl: 1.5rem;
+  --font-3xl: 1.75rem;
+  --font-huge: 3rem;
 }
-@media (min-width: 1440px) {
+@media (min-width: 1024px) {
   :root {
     font-size: 18px;
+    --font-lg: 1.5rem;
+    --font-xl: 1.75rem;
+    --font-2xl: 2rem;
+    --font-3xl: 2.25rem;
+    --font-huge: 4rem;
+  }
+}
+@media (min-width: 1920px) {
+  :root {
+    font-size: 1vw;
+  }
+}
+/* Font Sizes*/
+.font-xs {
+  font-size: var(--font-xs);
+}
+
+.font-sm {
+  font-size: var(--font-sm);
+}
+
+.font-md {
+  font-size: var(--font-md);
+}
+
+.font-lg {
+  font-size: var(--font-lg);
+}
+
+.font-xl {
+  font-size: var(--font-xl);
+}
+
+.font-2xl {
+  font-size: var(--font-2xl);
+}
+.font-3xl {
+  font-size: var(--font-3xl);
+}
+.font-huge {
+  font-size: var(--font-huge);
+}
+
+/* Reset */
+ul {
+  padding: 0;
+}
+
+p {
+  margin: 0;
+}
+/*
+  Colors
+*/
+:root {
+  --primary: #162574;
+  --primary-light: #3d5cfa;
+}
+body {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  color: var(--primary);
+  line-height: 173.4%;
+}
+
+.grotesk {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/**
+  The app is sized to contain the entire app.
+  It is used to center the content on really large screens.
+*/
+
+@media (min-width: 1520px) {
+  #app {
+    width: 150vh;
+    position: relative; /* Needed for app headers */
+    min-width: 1280px;
+    max-width: calc(100vw - 240px);
+    margin: auto;
   }
 }
 
-body {
-  margin: 0;
-}
-
-.fullpage {
-  /* Header height */
-  padding-top: 4rem;
-  /* Footer height */
-  padding-bottom: 0;
-  height: 100vh;
-  min-height: 47vw;
-}
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+/*
+  The app padding is used to give a consistent padding for the app.
+*/
 
 .app-padding {
-  padding: 32px;
+  padding: 32px 16px;
   margin: 0;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 480px) {
+  .app-padding {
+    padding: 32px;
+  }
+}
+
+@media (min-width: 768px) {
   .app-padding {
     padding: 0.875rem 64px;
   }
@@ -44,19 +136,67 @@ body {
   }
 }
 
-@media (min-width: 1920px) {
-  body {
-    width: 1920px;
-    margin: auto;
-  }
+/**
+  A full page screen contains the content and is sized to
+  exclude the app header and footer. It tries to size itself to the laptop
+  screen. Must come after fullpage to override it.
+*/
+.fullpage {
+  /* Header height */
+  padding-top: 4rem;
+  /* Footer height */
+  padding-bottom: 0;
+  height: 100vh;
+  min-height: 47vw;
+}
+
+@media (min-width: 1520px) {
   .fullpage {
     min-height: 720px;
   }
 }
-body {
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  color: #162574;
-  line-height: 173.4%;
+
+/* Common Classes */
+.highlight {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0.25em 1em;
+  background: #3d5cfa;
+  border-radius: 1em;
+  font-size: var(--font-lg);
+  line-height: normal;
+  color: #ffffff;
+  position: relative;
+  top: -0.125em;
+  margin-left: 0.5em;
+}
+
+.hover-zoom:hover {
+  transform: scale(1.05);
+  transition: all 0.3s;
+}
+
+.touch-ripple {
+  position: relative;
+}
+
+.touch-ripple:active::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(128, 128, 128, 0.3);
+  animation: fade-in 0.3s linear;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
 }

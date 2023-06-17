@@ -1,5 +1,10 @@
+<script setup>
+defineProps({
+  image: String
+})
+</script>
 <template>
-  <svg width="466" height="381" viewBox="0 0 466 381" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="366" height="381" viewBox="81.5 0 385.5 381" fill="blue" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M337.313 49.8819L359.585 53L454 53C460.627 53 466 47.6274 466 41L466 32C466 25.3726 460.627 20 454 20L222 20C215.373 20 210 25.3726 210 32L210 37.8819C210 44.5093 215.373 49.8819 222 49.8819L337.313 49.8819Z"
       fill="#FF9900" />
@@ -12,8 +17,7 @@
       </clipPath>
 
     </defs>
-    <image width="643" height="643" clip-path="url(#shape)" xlink:href="@/assets/profile.png">
+    <image width="643" height="643" clip-path="url(#shape)" :xlink:href="image">
     </image>
-
   </svg>
 </template>

@@ -1,58 +1,64 @@
 <script setup>
 import HomeData from "./home_data.json";
-import BottomBlock from "./BottomBlock.vue";
+import ProjectStatistics from "./ProjectStatistics.vue";
 import useBreakpoints from "../../utils/useBreakpoints";
-const {
-  isMobile,
-  isTablet,
-  isDesktop,
-  isWideScreen
-} = useBreakpoints();
+import SpacerView from "../../components/SpacerView.vue";
+
+const { isMobile, isTablet, isDesktop, isWideScreen } = useBreakpoints();
 </script>
 
 <template>
-  <div :class="['fullpage', { 'flex-column': isMobile || isTablet }]">
-    <div class="root">
+  <!-- Contains the image and text on first row and footer on second row -->
+  <div class="fullpage">
+    <!-- Contains the text/contact section on one side and image on the other. -->
+    <div :class="['horizontal', { 'flex': 'isWideScreen' }]">
+      <!-- Contains the text and image with contact section below.-->
       <div class="intro">
         <div class="intro-top app-padding">
-          <div v-if='isWideScreen' style="flex-grow:0.5"></div>
-          <h1>Hi! I Am <span class="highlight">UI/UX</span><br />{{ HomeData.name }}</h1>
+          <SpacerView :size=0.5 :min=1 />
+          <h1>
+            Hi! I Am <span class="highlight grotesk">UI/UX</span><br />
+            {{ HomeData.name }}
+          </h1>
           <p class="profile-description">{{ HomeData.description }}</p>
-          <div v-if='isWideScreen' style="flex-grow:0.5"></div>
-          <div class='home-buttons'>
-            <RouterLink to='/hire_me'><app-button>Hire Me</app-button></RouterLink>
-            <RouterLink to='/projects'><app-button variant="flat">Projects<img class="app-button-icon"
-                  src="../../assets/arrow_outward.svg" onerror="this.src='../../assets/arrow_outward.png'"></app-button>
+          <SpacerView :size=0.5 :min=2 />
+          <div class="home-buttons">
+            <RouterLink to="/hire_me">
+              <app-button>Hire Me</app-button>
+            </RouterLink>
+            <RouterLink to="/projects">
+              <app-button variant="flat">Projects
+                <img class="app-button-icon" src="../../assets/arrow_outward.svg"
+                  onerror="this.src='../../assets/arrow_outward.png'" />
+              </app-button>
             </RouterLink>
           </div>
-          <div class="img-section" v-if="isMobile">
-            <img src="@/assets/profile.png" class="logo-image" />
+          <div class="img-section" v-if="isMobile" style="margin-top: 2rem">
+            <img src="@/assets/profile.png" class="profile-img" />
           </div>
-          <div style="flex-grow:1"></div>
-          <div class='contact-section'>
+          <SpacerView :size=1 />
+          <div class="contact-section">
             <h2>Contact</h2>
-            <p>{{ HomeData.email }} | {{ HomeData.phoneNumber }}</p>
+            <p :style="{ textAlign: isMobile ? 'center' : '' }">{{ HomeData.email }} | {{ HomeData.phoneNumber }}</p>
           </div>
         </div>
-        <BottomBlock v-if="isDesktop" />
-
+        <ProjectStatistics v-if="isDesktop" />
       </div>
       <div class="img-section full-width" v-if="isWideScreen">
-        <img class="logo-image" src="@/assets/profile.png" />
+        <img class="profile-img" src="@/assets/profile.png" />
       </div>
     </div>
-    <div v-if="isMobile || isTablet" style="flex-grow:1"></div>
-    <BottomBlock v-if="isMobile || isTablet" />
+    <div v-if="isMobile || isTablet" style="flex-grow: 1"></div>
+    <ProjectStatistics v-if="isMobile || isTablet" />
   </div>
 </template>
 <style scoped>
-.flex-column {
+.flex {
   display: flex;
-  flex-direction: column;
 }
 
-.root {
-  display: flex;
+.horizontal {
+  min-height: 100%;
 }
 
 .app-button-icon {
@@ -62,7 +68,7 @@ const {
   height: 0.75em;
 }
 
-@media (max-width:599px) {
+@media (max-width: 599.99px) {
   .home-buttons {
     display: flex;
     justify-content: space-around;
@@ -70,22 +76,19 @@ const {
 }
 
 h1 {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 700;
-  font-size: 2.25rem;
+  font-size: var(--font-3xl);
   line-height: 152.9%;
-  /* or 98px */
 }
-
 
 h2 {
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: var(--font-xl);
   line-height: 173.4%;
   margin: 0;
-  margin-top: 1.5rem;
-  /* identical to box height, or 50px */
+  margin-top: 1.5em;
 }
 
 h2+p,
@@ -96,8 +99,7 @@ h1+p {
 .intro {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  flex-basis: 50%;
+  min-height: 50%;
   max-width: 100%;
 }
 
@@ -106,14 +108,14 @@ h1+p {
   max-width: 45%;
   min-width: 35%;
   position: relative;
-  background: #00072C;
+  background: #00072c;
 }
 
 .intro-top>.img-section {
-  width: 100vw;
-  max-width: 100vw;
-  margin-left: -32px;
-  margin-top: 32px;
+  min-width: 100vw;
+  /* max-width: 100vw; */
+  margin-left: calc(50% - 50vw);
+  margin-top: 2rem;
 }
 
 .img-section::after {
@@ -123,19 +125,16 @@ h1+p {
   height: 100%;
   top: 0;
   left: 0;
-  background-color: #FF000033;
-
+  background-color: #ff000033;
 }
 
-.logo-image {
+.profile-img {
   height: 100%;
   width: 100%;
   object-fit: cover;
   object-position: 50% 0%;
   display: block;
 }
-
-
 
 .intro-top {
   flex-grow: 1;
@@ -145,31 +144,14 @@ h1+p {
   flex-direction: column;
 }
 
-.highlight {
-  display: inline-block;
-  vertical-align: middle;
-  padding: 0.25em 1em;
-  background: #3D5CFA;
-  border-radius: 55.36px;
-  font-family: 'Space Grotesk';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1.25rem;
-  line-height: normal;
-  color: #FFFFFF;
-  position: relative;
-  top: -0.125em;
-
-}
 
 .profile-description {
-  font-size: 0.95rem;
+  font-size: var(--font-sm);
   line-height: 173.4%;
-  /* or 42px */
 }
 
 .contact-section {
-  margin: 32px 0;
+  margin: 2rem 0;
 }
 
 .contact-section>h2 {

@@ -1,0 +1,21 @@
+.down-up-enter-active {
+  transition: all 0.5s ease-out;
+}
+
+.down-up-leave-active {
+  transition: all 0.5s ease-out;
+  min-width: 80%;
+  position: absolute;
+}
+
+.down-up-leave-to,
+.down-up-enter-from {
+  transform: translateY(50vh);
+  opacity: 0.75;
+}
+
+.down-up-leave-from,
+.down-up-enter-to {
+  transform: translateX(0px);
+  opacity: 1;
+}
