@@ -19,18 +19,23 @@ onUnmounted(() => {
 })
 const wrapper = ref(null);
 watch(index, () => {
-  if (unref(wrapper))
-    unref(wrapper).style.width = unref(wrapper).firstChild.clientWidth + "px";
+  const el = unref(wrapper)
+  if (el) {
+    el.style.width = el.firstChild.clientWidth + "px";
+  }
 }, { flush: "post", immediate: false })
 </script>
 
 <template>
   <div class="fullpage app-padding">
     <h1 class="font-huge">Explore a wide range of
-      <span ref="wrapper" class="highlight">
-        <span class="inline-block nowrap">
-          {{ shown[index] }}
+      <span class="highlight-wrapper">
+        <span ref="wrapper" class="highlight">
+          <span class="inline-block nowrap">
+            {{ shown[index] }}
+          </span>
         </span>
+
       </span>
       projects
     </h1>
@@ -67,6 +72,12 @@ h1 {
   margin: 1rem 0;
 }
 
+.highlight-wrapper {
+  display: inline-block;
+  min-width: 5em;
+  text-align: center;
+}
+
 .highlight {
   font-size: 1em;
   padding: 0.25em 0;
@@ -74,7 +85,9 @@ h1 {
   margin-left: 0em;
   display: inline-block;
   overflow-x: hidden;
-  transition: width 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: width 0.6s ease;
+  width: auto;
+  text-align: center;
 }
 
 .highlight>span {

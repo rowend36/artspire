@@ -170,26 +170,16 @@ body {
   top: -0.125em;
   margin-left: 0.5em;
 }
-
-.hover-zoom:hover {
-  transform: scale(1.05);
+.hover-zoom {
   transition: all 0.3s;
 }
-
-.touch-ripple {
-  position: relative;
+.hover-zoom:hover {
+  transform: scale(1.05) translateY(-10px);
 }
 
-.touch-ripple:active::after {
-  content: "";
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(128, 128, 128, 0.3);
-  animation: fade-in 0.3s linear;
+.touch-ripple:active {
+  opacity: 0.75;
+  transition: opacity 0.3s;
 }
 
 @keyframes fade-in {
