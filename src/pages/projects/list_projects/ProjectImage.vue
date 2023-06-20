@@ -2,7 +2,6 @@
 import { computed } from "vue"
 const props = defineProps({
   info: {
-    type: Object,
     required: true
   }
 })
@@ -10,30 +9,29 @@ const item = computed(() => props.info.item);
 </script>
 
 <template>
-  <img :src="item.image" :class="item.shape" />
+  <div :data-index="info.i + ':' + info.preserveAspect">
+    <sanity-img :src="item.previewImage" class="block hover-zoom p-1 img" />
+  </div>
 </template>
 <style scoped>
-.square {
-  display: block;
-  width: calc(33% - 1em);
-  margin: 0.5em;
-  height: auto;
-  aspect-ratio: 1;
+div {
+  position: relative;
 }
 
-.vert {
-  display: block;
-  width: calc(33% - 1em);
-  margin: 0.5em;
-  aspect-ratio: 0.5;
-  height: auto;
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 25%;
 }
 
-.horiz {
+/* div::after {
+  content: attr(data-index);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
   display: block;
-  width: calc(66% - 1em);
-  margin: 0.5em;
-  aspect-ratio: 2;
-  height: auto;
-}
+  z-index: 100;
+} */
 </style>

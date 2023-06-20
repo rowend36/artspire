@@ -15,16 +15,17 @@
 @media (min-width: 1024px) {
   :root {
     font-size: 18px;
-    --font-lg: 1.5rem;
-    --font-xl: 1.75rem;
     --font-2xl: 2rem;
     --font-3xl: 2.25rem;
     --font-huge: 4rem;
   }
 }
+
 @media (min-width: 1920px) {
   :root {
-    font-size: 1vw;
+    font-size: 0.75vw;
+    --font-lg: 1.5rem;
+    --font-xl: 1.75rem;
   }
 }
 /* Font Sizes*/
@@ -141,13 +142,15 @@ body {
   exclude the app header and footer. It tries to size itself to the laptop
   screen. Must come after fullpage to override it.
 */
-.fullpage {
+main {
   /* Header height */
   padding-top: 4rem;
+}
+.fullpage {
   /* Footer height */
   padding-bottom: 0;
-  height: 100vh;
-  min-height: 47vw;
+  height: calc(100vh - 4rem);
+  min-height: 40vw;
 }
 
 @media (min-width: 1520px) {
@@ -170,11 +173,22 @@ body {
   top: -0.125em;
   margin-left: 0.5em;
 }
+
 .hover-zoom {
   transition: all 0.3s;
+  position: relative;
 }
 .hover-zoom:hover {
-  transform: scale(1.05) translateY(-10px);
+  z-index: 10;
+  transform: scale(1.04);
+}
+
+.hover-text {
+  transition: all 0.3s;
+}
+.hover-text:hover {
+  font-weight: bolder;
+  opacity: 1;
 }
 
 .touch-ripple:active {
@@ -188,5 +202,23 @@ body {
   }
   50% {
     opacity: 1;
+  }
+}
+
+@keyframes shake {
+  from {
+    transform: translateX(-5.5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+  87.5% {
+    transform: translateX(1px);
+  }
+  to {
+    transform: translateX(0px);
   }
 }

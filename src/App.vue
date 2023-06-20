@@ -9,7 +9,11 @@ import DebugView from './components/DebugView.vue'
   <AppHeader />
   <main>
     <DebugView />
-    <RouterView />
+    <router-view :tab="activeTab" v-slot="{ Component }">
+      <transition name="left-right">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </main>
   <AppFooter />
 </template>

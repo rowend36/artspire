@@ -1,22 +1,19 @@
 <script setup>
-import { onMounted, onUnmounted, ref, unref, watch } from "vue";
+import { ref, unref, watch } from "vue";
 import useTabController from "../../components/tab_controller";
+import useInterval from "../../utils/useInterval"
 /** @type {import("../../logic/api").ProjectType[]}*/
 const TABS = ["UI/UX", "Brand", "Art & Illustration"]
 const { activeTab, setActiveTab, tabs } = useTabController(TABS, '/projects')
 const index = ref(0);
-let i = 0;
 const shown = [
-  "Artistic", "UI/UX", "Brand"]
+  "UI/UX", "Brand", "Artistic"]
+let skip = ref(false);
 const start = () => {
+  if (skip.value) return skip.value = false;
   index.value = (index.value + 1) % shown.length;
 }
-onMounted(() => {
-  i = setInterval(start, 2000);
-})
-onUnmounted(() => {
-  clearInterval(i);
-})
+useInterval(start, 2000)
 const wrapper = ref(null);
 watch(index, () => {
   const el = unref(wrapper)
@@ -27,7 +24,7 @@ watch(index, () => {
 </script>
 
 <template>
-  <div class="fullpage app-padding">
+  <div class="app-padding" :style='{ paddingBottom: 0 }'>
     <h1 class="font-huge">Explore a wide range of
       <span class="highlight-wrapper">
         <span ref="wrapper" class="highlight">
@@ -40,14 +37,15 @@ watch(index, () => {
       projects
     </h1>
     <ul class="tabs spaced grotesk font-xl">
-      <li v-for='name of tabs' :key='name' :class="['tab', { 'tab-active': name == activeTab }]"
-        @click="setActiveTab(name)">
-        {{ name }}</li>
+      <li v-for=' ( name, i ) of tabs ' :key='name' :class="[' tab', { 'tab-active': name == activeTab }]"
+        @click=" setActiveTab(name)">
+        <span class='hover-text' @mouseover="index = i; skip = true">{{ name }}</span>
+      </li>
       <li class='tab empty-tab'>
       </li>
     </ul>
     <router-view :tab="activeTab" v-slot="{ Component }">
-      <transition name="down-up">
+      <transition name="left-right">
         <component :is="Component" />
       </transition>
     </router-view>
@@ -92,5 +90,9 @@ h1 {
 
 .highlight>span {
   padding: 0 0.5em;
+}
+
+.mb-36 {
+  margin-bottom: 9rem;
 }
 </style>

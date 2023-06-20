@@ -9,7 +9,7 @@ defineProps({
 </script>
 
 <template>
-  <button :class="['themed-btn', variant === 'elevated' ? 'grotesk' : '', `btn-${variant}`]">
+  <button :class="['themed-btn', variant === 'elevated' ? 'hover-zoom grotesk' : 'hover-text', `btn-${variant}`]">
     <slot></slot>
   </button>
 </template>

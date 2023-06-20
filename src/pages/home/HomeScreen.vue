@@ -2,8 +2,7 @@
 import HomeData from "./home_data.json";
 import ProjectStatistics from "./ProjectStatistics.vue";
 import useBreakpoints from "../../utils/useBreakpoints";
-import SpacerView from "../../components/SpacerView.vue";
-
+import HomeModal from "./HomeModal.vue";
 const { isMobile, isTablet, isDesktop, isWideScreen } = useBreakpoints();
 </script>
 
@@ -15,13 +14,13 @@ const { isMobile, isTablet, isDesktop, isWideScreen } = useBreakpoints();
       <!-- Contains the text and image with contact section below.-->
       <div class="intro">
         <div class="intro-top app-padding">
-          <SpacerView :size=0.5 :min=1 />
+          <spacer-view :size=0.5 :min=1 />
           <h1>
             Hi! I Am <span class="highlight grotesk">UI/UX</span><br />
             {{ HomeData.name }}
           </h1>
           <p class="profile-description">{{ HomeData.description }}</p>
-          <SpacerView :size=0.5 :min=2 />
+          <spacer-view :size=0.5 :min=2 />
           <div class="home-buttons">
             <RouterLink to="/hire_me">
               <app-button>Hire Me</app-button>
@@ -36,7 +35,7 @@ const { isMobile, isTablet, isDesktop, isWideScreen } = useBreakpoints();
           <div class="img-section" v-if="isMobile" style="margin-top: 2rem">
             <img src="@/assets/profile.png" class="profile-img" />
           </div>
-          <SpacerView :size=1 />
+          <spacer-view :size=1 />
           <div class="contact-section">
             <h2>Contact</h2>
             <p :style="{ textAlign: isMobile ? 'center' : '' }">{{ HomeData.email }} | {{ HomeData.phoneNumber }}</p>
@@ -50,13 +49,10 @@ const { isMobile, isTablet, isDesktop, isWideScreen } = useBreakpoints();
     </div>
     <div v-if="isMobile || isTablet" style="flex-grow: 1"></div>
     <ProjectStatistics v-if="isMobile || isTablet" />
+    <HomeModal />
   </div>
 </template>
 <style scoped>
-.flex {
-  display: flex;
-}
-
 .horizontal {
   min-height: 100%;
 }

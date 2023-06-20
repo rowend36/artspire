@@ -1,7 +1,7 @@
 <script setup>
 defineProps({
   size: {
-    default: 0.5,
+    default: 1,
     type: Number
   },
   min: {

@@ -98,7 +98,11 @@
   right: var(--minus-border-radius);
   left: 100%;
 }
-
+.tab-active:first-child {
+  padding-left: calc(calc(var(--padding-x) + var(--reduced-padding-x)) / 2);
+  padding-right: calc(calc(var(--padding-x) + var(--reduced-padding-x)) / 2);
+  margin-left: 0;
+}
 .tab-active:first-child::before {
   border-radius: 0;
   border-bottom: none;

@@ -3,6 +3,7 @@ import {
   RouterLink
 } from "vue-router";
 import AppLogo from "./AppLogo.vue";
+import HomeData from "../pages/home/home_data.json"
 import MenuIcon from "vue-material-design-icons/Menu.vue";
 const links = [{
   href: "/home",
@@ -17,7 +18,7 @@ const links = [{
   name: "Classes",
   showOnMobile: false,
 }, {
-  href: "/resume",
+  href: HomeData.resumeLink,
   name: "Resume",
   showOnMobile: true,
   icon: "M1.625 15C1.15833 15 0.771 14.846 0.463 14.538C0.154333 14.2293 0 13.8417 0 13.375V11H1V13.375C1 13.5417 1.06267 13.6873 1.188 13.812C1.31267 13.9373 1.45833 14 1.625 14H12.375C12.5417 14 12.6873 13.9373 12.812 13.812C12.9373 13.6873 13 13.5417 13 13.375V11H14V13.375C14 13.8417 13.846 14.2293 13.538 14.538C13.2293 14.846 12.8417 15 12.375 15H1.625ZM7 11.225L3.45 7.69999L4.175 6.97499L6.5 9.29999V0.649994H7.5V9.29999L9.825 6.97499L10.55 7.69999L7 11.225Z"
@@ -33,7 +34,7 @@ const {
     <AppLogo />
     <div style="flex-grow:1"></div>
     <RouterLink activeClass="header-link-active" v-for="url of links" :key="url.href" :to="url.href"
-      :class="['header-link', { 'header-download-link': !!url.icon }]">{{ url.name }}
+      :class="['header-link', 'grotesk', 'hover-text', { 'header-download-link': !!url.icon }]">{{ url.name }}
       <svg v-if="url.icon" width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path :d="url.icon" :fill="primary" />
       </svg>

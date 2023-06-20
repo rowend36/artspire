@@ -1,4 +1,5 @@
 <script setup>
+import { urlFor } from "../../../components/SanityImage.vue";
 defineProps({
   image: String
 })
@@ -17,7 +18,11 @@ defineProps({
       </clipPath>
 
     </defs>
-    <image width="643" height="643" clip-path="url(#shape)" :xlink:href="image">
+    <rect width="643" height="643" clip-path="url(#shape)" fill='#dedede'>
+    </rect>
+    <image v-if="image" width="643" height="643" clip-path="url(#shape)"
+      :xlink:href="urlFor(image).auto('format').fit('min').width(720).toString()" preserveAspectRatio="xMidYMid slice">
     </image>
   </svg>
 </template>
+<style scoped></style>

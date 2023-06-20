@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@fakerjs/faker": "^3.0.0",
+    "@sanity/image-url": "^1.0.2",
     "eruda": "^2.11.3",
     "normalize.css": "^8.0.1",
     "pinia": "^2.0.28",

@@ -12,6 +12,11 @@ const router = createRouter({
       beforeEnter: handle404,
     },
     {
+      path: "/classes",
+      name: "classes",
+      component: () => import("./classes"),
+    },
+    {
       path: "/about",
       name: "about",
       // route level code-splitting
