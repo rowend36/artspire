@@ -25,7 +25,7 @@ defineProps({
 
 .btn-elevated {
   font-size: var(--font-md);
-  background: #3D5CFA;
+  background: var(--primary-light);
   color: white;
 }
 

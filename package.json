@@ -16,6 +16,7 @@
     "eruda": "^2.11.3",
     "normalize.css": "^8.0.1",
     "pinia": "^2.0.28",
+    "sanity-blocks-vue-component": "^1.0.1",
     "swrv": "^1.0.3",
     "vue": "^3.2.45",
     "vue-material-design-icons": "^5.2.0",

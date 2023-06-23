@@ -26,7 +26,7 @@ import {
 
 .dot {
   display: inline-block;
-  background: #3D5CFA;
+  background: var(--primary-light);
   width: 0.25em;
   height: 0.25em;
   margin: 0 0.1em;

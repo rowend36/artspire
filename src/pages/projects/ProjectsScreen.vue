@@ -2,6 +2,7 @@
 import { ref, unref, watch } from "vue";
 import useTabController from "../../components/tab_controller";
 import useInterval from "../../utils/useInterval"
+import SocialLinks from "../../components/SocialLinks.vue";
 /** @type {import("../../logic/api").ProjectType[]}*/
 const TABS = ["UI/UX", "Brand", "Art & Illustration"]
 const { activeTab, setActiveTab, tabs } = useTabController(TABS, '/projects')
@@ -44,11 +45,15 @@ watch(index, () => {
       <li class='tab empty-tab'>
       </li>
     </ul>
-    <router-view :tab="activeTab" v-slot="{ Component }">
-      <transition name="left-right">
-        <component :is="Component" />
-      </transition>
-    </router-view>
+    <div style="min-height: 50vh;" class="flex flex-col">
+      <router-view :tab="activeTab" v-slot="{ Component }">
+        <transition name="left-right">
+          <component :is="Component" />
+        </transition>
+      </router-view>
+      <spacer-view />
+      <social-links />
+    </div>
   </div>
 </template>
 <style scoped>

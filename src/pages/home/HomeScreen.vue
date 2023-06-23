@@ -1,9 +1,11 @@
 <script setup>
-import HomeData from "./home_data.json";
+import MyInfo from "../../logic/info";
 import ProjectStatistics from "./ProjectStatistics.vue";
 import useBreakpoints from "../../utils/useBreakpoints";
 import HomeModal from "./HomeModal.vue";
+import { ref } from "vue";
 const { isMobile, isTablet, isDesktop, isWideScreen } = useBreakpoints();
+const modalShown = ref(false);
 </script>
 
 <template>
@@ -17,14 +19,12 @@ const { isMobile, isTablet, isDesktop, isWideScreen } = useBreakpoints();
           <spacer-view :size=0.5 :min=1 />
           <h1>
             Hi! I Am <span class="highlight grotesk">UI/UX</span><br />
-            {{ HomeData.name }}
+            {{ MyInfo.name }}
           </h1>
-          <p class="profile-description">{{ HomeData.description }}</p>
+          <p class="profile-description">{{ MyInfo.description }}</p>
           <spacer-view :size=0.5 :min=2 />
           <div class="home-buttons">
-            <RouterLink to="/hire_me">
-              <app-button>Hire Me</app-button>
-            </RouterLink>
+            <app-button @click="modalShown = true">Hire Me</app-button>
             <RouterLink to="/projects">
               <app-button variant="flat">Projects
                 <img class="app-button-icon" src="../../assets/arrow_outward.svg"
@@ -38,18 +38,22 @@ const { isMobile, isTablet, isDesktop, isWideScreen } = useBreakpoints();
           <spacer-view :size=1 />
           <div class="contact-section">
             <h2>Contact</h2>
-            <p :style="{ textAlign: isMobile ? 'center' : '' }">{{ HomeData.email }} | {{ HomeData.phoneNumber }}</p>
+            <p :style="{ textAlign: isMobile ? 'center' : '' }">
+              <a :href="`mailto:${MyInfo.email}`" class="link"> {{ MyInfo.email }}</a>
+              {{ "|" }}
+              <a :href="`tel:${MyInfo.phoneNumber.replace(/ /g, '')}`" class="link"> {{ MyInfo.phoneNumber }}</a>
+            </p>
           </div>
         </div>
         <ProjectStatistics v-if="isDesktop" />
       </div>
-      <div class="img-section full-width" v-if="isWideScreen">
+      <div class="img-section" v-if="isWideScreen">
         <img class="profile-img" src="@/assets/profile.png" />
       </div>
     </div>
     <div v-if="isMobile || isTablet" style="flex-grow: 1"></div>
     <ProjectStatistics v-if="isMobile || isTablet" />
-    <HomeModal />
+    <HomeModal :shown="modalShown" @close="modalShown = false" />
   </div>
 </template>
 <style scoped>
@@ -102,7 +106,7 @@ h1+p {
 .img-section {
   width: auto;
   max-width: 45%;
-  min-width: 35%;
+  min-width: 40%;
   position: relative;
   background: #00072c;
 }
@@ -156,5 +160,10 @@ h1+p {
 
 .contact-section>p {
   margin-bottom: 0;
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
 }
 </style>

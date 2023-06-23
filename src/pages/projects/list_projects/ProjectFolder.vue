@@ -10,7 +10,8 @@ defineProps({
 </script>
 <template>
   <div class="cursor-pointer hover-zoom touch-ripple" @click="$router.push('/projects/' + item.id)">
-    <FolderIcon class="folder-icon" :image="item.previewImage" />
+    <FolderIcon class="folder-icon" :image="item.previewImage"
+      :is-mobile-app="!item.types || item.types.includes('Mobile App')" />
     <p class="font-lg grotesk">{{ item.title }}</p>
   </div>
 </template>

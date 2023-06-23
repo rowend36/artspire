@@ -25,7 +25,7 @@ export default function masonry(
   const columns = range(numColumns).map(() => []);
   const totalHeights = range(numColumns).map(() => 0);
   const _t = sizes.filter((e) => e.height);
-  const averageCellHeight = _t.reduce((s, e) => s + e.height, 0) / _t.length;
+  const averageCellHeight = _t.reduce((s, e) => s + e.height, 0) / _t.length || 1;
   // console.log({ sizes, numColumns });
   let stop = false;
   sizes = [
@@ -53,6 +53,14 @@ export default function masonry(
       });
       totalHeights[i % numColumns] += failHeight;
     } else {
+      console.log({
+        columns,
+        totalHeights,
+        "sizes[i]": sizes[i],
+        sizes,
+        offsetWeight,
+        averageCellHeight
+      });
       const { colSpan, cellHeight, _y, col } = bestPosition(
         columns,
         totalHeights,
@@ -196,7 +204,7 @@ const checkDistortion = (columns, heights, target, start) => {
     const cell = columns[i][columns[i].length - 1];
     if (
       /* Bigger cols should hate distortion more: cell.col - start !== i ||*/ heights[
-        i
+      i
       ] === target
     )
       continue;

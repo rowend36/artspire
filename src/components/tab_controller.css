@@ -23,7 +23,7 @@
   height: var(--height);
   /* Inactive items show only bottom border. Use negative margins to make ends overlap. */
   border: 1.5px solid transparent;
-  border-bottom-color: #3d5cfa;
+  border-bottom-color: var(--primary-light);
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
   margin: 0 -1.5px;
@@ -57,9 +57,9 @@
 
 .tab-active {
   /* Hide bottom border. Show other borders.*/
-  border-top-color: #3d5cfa;
-  border-left-color: #3d5cfa;
-  border-right-color: #3d5cfa;
+  border-top-color: var(--primary-light);
+  border-left-color: var(--primary-light);
+  border-right-color: var(--primary-light);
   border-bottom-style: none;
   /*Reduce height of element so that bottom end of the side borders don't show behind pseudo elements. Tab height - border-radius */
   height: var(--reduced-height);
@@ -73,7 +73,7 @@
 .tab::after {
   content: "";
   position: absolute;
-  border: 1.5px none #3d5cfa;
+  border: 1.5px none var(--primary-light);
   /* Needed so that edges align without using calc */
   box-sizing: content-box;
   /*Allow for the border-radius of parent element. 0.7071 * border-radius*/

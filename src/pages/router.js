@@ -46,9 +46,9 @@ const router = createRouter({
     },
   ],
   scrollBehavior(to, from, scrollPosition) {
-    if (from.path.startsWith("/projects") && to.path.startsWith("/projects")) {
-      return false;
-    }
+    // if (from.path.startsWith("/projects") && to.path.startsWith("/projects")) {
+    //   return false;
+    // }
     return scrollPosition ?? 0;
   },
 });

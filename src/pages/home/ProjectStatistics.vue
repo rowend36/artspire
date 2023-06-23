@@ -1,10 +1,13 @@
+<script setup>
+import MyInfo from "../../logic/info";
+</script>
 <template>
   <div class="bottom-block app-padding">
     <h2>Projects Statistics 2023</h2>
     <ul class="stat-block">
-      <li>Website Design <span class="stat-value">5</span></li>
-      <li>Mobile App Design <span class="stat-value">2</span></li>
-      <li>Branding <span class="stat-value">100</span></li>
+      <li>Website Design <span class="stat-value">{{ MyInfo.numWebsiteDesigns }}</span></li>
+      <li>Mobile App Design <span class="stat-value">{{ MyInfo.numMobileAppDesigns }}</span></li>
+      <li>Branding <span class="stat-value">{{ MyInfo.numBrandingProjects }}</span></li>
     </ul>
   </div>
 </template>
@@ -46,8 +49,8 @@
   flex-basis: 100vw;
 
   padding-left: 1rem;
-  border: 1rem none #ff9900;
-  border-left-style: block;
+  border: 0.75rem none #ff9900;
+  border-left-style: solid;
 }
 
 @media (max-width: 599.99px) {

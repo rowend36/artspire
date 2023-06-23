@@ -51,6 +51,7 @@ const cols = computed(() => {
 })
 useLogger(cols);
 useLogger(type, "type");
+useLogger(projects, "projects");
 useLogger(list, "list");
 </script>
 <template>

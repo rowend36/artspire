@@ -164,7 +164,7 @@ main {
   display: inline-block;
   vertical-align: middle;
   padding: 0.25em 1em;
-  background: #3d5cfa;
+  background: var(--primary-light);
   border-radius: 1em;
   font-size: var(--font-lg);
   line-height: normal;
@@ -187,7 +187,7 @@ main {
   transition: all 0.3s;
 }
 .hover-text:hover {
-  font-weight: bolder;
+  text-decoration: underline;
   opacity: 1;
 }
 

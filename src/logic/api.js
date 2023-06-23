@@ -1,9 +1,10 @@
 import useSWRV from "swrv";
 import LocalStorageCache from "swrv/dist/cache/adapters/localStorage";
 import { ref, watch } from "vue";
+import { queryToUrl } from "./info";
 /**
  * @typedef {string} ImageRef
- * @typedef {("UI/UX"|"Brand"|"Art & Illustration")} ProjectType
+ * @typedef {("UI/UX"|"Brand"|"Art & Illustration"|"Mobile App")} ProjectType
  * @typedef {{
  *     id: string,
  *     title: string,
@@ -17,20 +18,12 @@ import { ref, watch } from "vue";
  *     types: Array<ProjectType>
  * }} Project
  */
-//Could have just used Sanity client
-const PROJECT_ID = "9abgiydw";
-const DATASET = "production";
-const USE_CDN = false;
 const fetcher = (key, options) =>
   fetch(key, options).then((res) => res.json())
 
 const cache = new LocalStorageCache("artspire")
-
 const useSanity = (query, opts) => {
-  const m = useSWRV(`https://${PROJECT_ID
-    }.${USE_CDN ? "apiCdn" : "api"}.sanity.io/v2021-10-21/data/query/${DATASET
-    }?query=${encodeURIComponent(query.replace(/\s{2,}/g, ' '))
-    }`, fetcher, { dedupingInterval: 60000, cache });
+  const m = useSWRV(queryToUrl(query), fetcher, { dedupingInterval: 60000, cache });
   const response = ref(undefined);
   watch(m.data, async () => {
     if (!m.data.value) return;
