@@ -24,7 +24,7 @@ mv dist/* . &&
 pcho "Commit and Deploy" &&
 git add . &&
 git commit -m "feat: deploy ${date}" &&
-git push
+git push -f
 
 pcho "Return to previous branch"
 git checkout main
