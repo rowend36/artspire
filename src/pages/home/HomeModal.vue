@@ -1,6 +1,6 @@
 <script setup>
 import MyInfo from "../../logic/info";
-import CloseIcon from "vue-material-design-icons/WIndowClose.vue";
+import CloseIcon from "vue-material-design-icons/WindowClose.vue";
 defineProps({
   shown: Boolean
 })
