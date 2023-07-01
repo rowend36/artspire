@@ -20,7 +20,9 @@ const info = useProjectInfoAPI(id);
     <template v-if="info">
       <sanity-img :src="info.previewImage" v-if="info.showPreviewImage" class="w-full block" />
       <sanity-img :src="section.image" class="w-full block" :key="section.image" v-for="section of info.sections" />
-      <sanity-img :src="info.footer" class="w-banner block" />
+      <div class="w-banner">
+        <sanity-img :src="info.footer" class="w-full block" />
+      </div>
     </template>
   </div>
 </template>

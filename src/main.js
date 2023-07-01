@@ -8,9 +8,9 @@ import SanityImage from "./components/SanityImage.vue";
 import router from "./pages/router";
 
 import "normalize.css";
-import "./assets/main.css";
-import "./assets/utilities.css";
-import "./assets/animations.css";
+import "./styles/main.css";
+import "./styles/utilities.css";
+import "./styles/animations.css";
 
 if (import.meta.env.DEV) {
   // (await import("eruda")).init([]);

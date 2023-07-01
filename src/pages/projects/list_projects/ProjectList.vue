@@ -34,9 +34,8 @@ const cols = computed(() => {
     console.time("masonry")
     return type.value === 'freeflow' && list.value && masonry(list.value.map((e) => {
       const [width = 200, height = 200] = parseSize(e.previewImage);
-      const ratio = (height / width || Math.random() < 0.333 ? 0.65 : Math.random() > 0.5 ? 1 : 1.5)
+      const ratio = (height / width || (Math.random() < 0.333 ? 0.65 : Math.random() > 0.5 ? 1 : 1.5))
       const cols = ratio < 0.67 ? 2 : 1;
-      console.log({ width, height });
       return /** @type {import("../../../utils/masonry").SizeInfo} */({
         cols,
         height: ratio * cols,
@@ -49,6 +48,7 @@ const cols = computed(() => {
     console.timeEnd("masonry")
   }
 })
+
 useLogger(cols);
 useLogger(type, "type");
 useLogger(projects, "projects");

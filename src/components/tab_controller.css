@@ -45,7 +45,7 @@
   .tabs {
     --padding-x: 1em;
     overflow: auto;
-    font-size: var(--font-xs);
+    font-size: var(--font-sm);
   }
   .tab {
     flex-grow: 1;

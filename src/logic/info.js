@@ -25,6 +25,7 @@ const info = reactive({
   twitterLink: null,
   linkedInLink: null,
   instagramLink: null,
+  photoURL: null,
 });
 if (typeof fetch !== "undefined" && typeof localStorage !== "undefined") {
   /**Update Info if possible */
@@ -47,8 +48,8 @@ if (typeof fetch !== "undefined" && typeof localStorage !== "undefined") {
     queryToUrl(
       "*[_type=='person']{name,firstName,resumeLink,\
         description,email,phoneNumber,numBrandingProjects,\
-        ,numMobileAppDesigns,whatsappNumber,twitterLink,\
-        linkedInLink,instagramLink"
+        numMobileAppDesigns,whatsappNumber,twitterLink,\
+        linkedInLink,instagramLink,photoURL}"
     )
   ).then(async (e) => {
     const x = (await e.json()).result[0];

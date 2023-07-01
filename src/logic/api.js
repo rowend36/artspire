@@ -19,20 +19,29 @@ import { queryToUrl } from "./info";
  * }} Project
  */
 const fetcher = (key, options) =>
-  fetch(key, options).then((res) => res.json())
+  fetch(key, options)
+    .then((res) => res.json())
+    .catch((e) => console.error(e));
 
-const cache = new LocalStorageCache("artspire")
+const cache = new LocalStorageCache("artspire");
 const useSanity = (query, opts) => {
-  const m = useSWRV(queryToUrl(query), fetcher, { dedupingInterval: 60000, cache });
+  const m = useSWRV(queryToUrl(query), fetcher, {
+    dedupingInterval: 60000,
+    cache,
+  });
   const response = ref(undefined);
-  watch(m.data, async () => {
-    if (!m.data.value) return;
-    const result = m.data.value.result;
-    if (opts?.single) response.value = result.length > 0 ? result[0] : null;
-    else response.value = result;
-  }, { immediate: true })
+  watch(
+    m.data,
+    async () => {
+      if (!m.data.value) return;
+      const result = m.data.value.result;
+      if (opts?.single) response.value = result.length > 0 ? result[0] : null;
+      else response.value = result;
+    },
+    { immediate: true }
+  );
   return response;
-}
+};
 /**
  * @returns {import('vue').Ref<Array<Partial<Project>>>}
  */
@@ -43,15 +52,16 @@ export const useProjectsAPI = function () {
       "previewImage":previewImage.asset._ref,
       types
   }
-`)
+`);
 };
 /**
- * 
- * @param {string} id 
+ *
+ * @param {string} id
  * @returns {import('vue').Ref<Project>}
  */
 export const useProjectInfoAPI = function (id) {
-  return useSanity(`*[_type=='portfolio' && _id=='${id.replace(/'/g, " ")}']{
+  return useSanity(
+    `*[_type=='portfolio' && _id=='${id.replace(/'/g, " ")}']{
     title,
       showPreviewImage,
       "id":_id,
@@ -59,5 +69,7 @@ export const useProjectInfoAPI = function (id) {
       "footer":footer.asset._ref,
       sections[]{"image":image.asset._ref,description}
   }
-`, { single: true })
+`,
+    { single: true }
+  );
 };

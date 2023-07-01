@@ -1,10 +1,15 @@
 <script setup>
+import { ref } from "vue";
 import MyInfo from "../../logic/info";
+import sendMessage from "../../logic/sendMessage";
 import CloseIcon from "vue-material-design-icons/WindowClose.vue";
 defineProps({
   shown: Boolean
 })
 const emit = defineEmits(["close"])
+const name = ref("");
+const email = ref("")
+const description = ref("")
 </script>
 <template>
   <div class="modal-container" v-show="shown">
@@ -15,19 +20,21 @@ const emit = defineEmits(["close"])
       <h5 class="flex font-lg items-center" :style="{ fontWeight: 600 }">
         <img class="rounded-full w-10 h-10 mr-4" />Hire {{ MyInfo.name }}
       </h5>
-      <form class="flex flex-wrap text-input-root mb-4">
-        <input class="text-input flex-grow" name="name" placeholder="Name" />
-        <input class="text-input flex-grow" name="email" placeholder="Email" type="email" />
-        <!-- <div class="w-full flex-shrink-0"></div> -->
-        <textarea class="text-input flex-grow" name="description"
-          :placeholder="`Send a message to ${MyInfo.firstName}`"></textarea>
+      <form @submit.prevent="sendMessage({ name, email, message: description })">
+        <div class="flex flex-wrap text-input-root mb-4">
+          <input class="text-input flex-grow" v-bind="name" name="name" placeholder="Name" />
+          <input class="text-input flex-grow" v-bind="email" name="email" placeholder="Email" type="email" />
+          <!-- <div class="w-full flex-shrink-0"></div> -->
+          <textarea class="text-input flex-grow" v-bind="description" name="description"
+            :placeholder="`Send a message to ${MyInfo.firstName}`"></textarea>
+        </div>
+        <div class="flex w-full items-baseline">
+          <a class="link" v-if="MyInfo.resumeLink" :href="MyInfo.resumeLink">Download Resume</a>
+          <spacer-view />
+          <app-button class="py-2 px-3 mr-4 cancel-btn" @click.prevent="emit('close')">Cancel</app-button>
+          <app-button class="py-2 px-3">Send</app-button>
+        </div>
       </form>
-      <div class="flex w-full items-baseline">
-        <a class="link" v-if="MyInfo.resumeLink" :href="MyInfo.resumeLink">Download Resume</a>
-        <spacer-view />
-        <app-button class="py-2 px-3 mr-4 cancel-btn" @click="emit('close')">Cancel</app-button>
-        <app-button class="py-2 px-3">Send</app-button>
-      </div>
     </div>
   </div>
 </template>

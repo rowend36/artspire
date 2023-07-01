@@ -5,6 +5,7 @@ import {
 import AppLogo from "./AppLogo.vue";
 import MyInfo from "../logic/info";
 import MenuIcon from "vue-material-design-icons/Menu.vue";
+import CloseIcon from "vue-material-design-icons/Close.vue";
 
 const links = [{
   href: "/home",
@@ -18,12 +19,14 @@ const links = [{
 }]
 import useBreakpoints from "../utils/useBreakpoints";
 import { primary } from "../utils/app_config";
+import { ref } from "vue";
 const {
-  isWideScreen
+  isWideScreen,
 } = useBreakpoints();
+const isMenuOpen = ref(false);
 </script>
 <template>
-  <nav v-if="isWideScreen" class="app-padding nav-bar">
+  <nav class="app-padding nav-bar">
     <template v-if="isWideScreen">
       <AppLogo />
       <div style="flex-grow:1"></div>
@@ -33,7 +36,7 @@ const {
       </RouterLink>
     </template>
     <!-- Mobile Menu Button -->
-    <app-button v-else variant='icon' id='menu-btn'>
+    <app-button v-else variant='icon' id='menu-btn' @click="isMenuOpen = true">
       <MenuIcon />
     </app-button>
     <!-- Download resume button -->
@@ -49,6 +52,20 @@ const {
     <template v-if="!isWideScreen">
       <div style='flex-grow:1'></div>
       <AppLogo />
+      <Transition name="up-down">
+        <div class="fixed text-white" v-show="isMenuOpen"
+          :style="{ paddingTop: '4rem', zIndex: 10, paddingBottom: '4rem', backgroundColor: 'rgba(0,0,0,0.9)', width: '100%', bottom: 0, top: 0, left: 0 }">
+          <app-button variant="icon" class="close-icon-btn" @click="isMenuOpen = false">
+            <CloseIcon />
+          </app-button>
+          <ul>
+            <!-- Desktop Navigation Links -->
+            <RouterLink @click="isMenuOpen = false" activeClass="header-link-active" v-for="url of links" :key="url.href"
+              :to="url.href" :class="['mobile-link', 'block', 'grotesk', 'hover-text']">{{ url.name }}
+            </RouterLink>
+          </ul>
+        </div>
+      </Transition>
     </template>
   </nav>
 </template>
@@ -81,6 +98,19 @@ const {
   text-decoration: none;
 }
 
+.mobile-link {
+  line-height: 3rem;
+  width: 100%;
+  text-align: center;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+  /* Deep Color */
+
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid #333333;
+}
+
 @media (max-width: 1023.99px) {
   .header-link {
     margin-left: 1rem;
@@ -92,7 +122,17 @@ const {
 }
 
 .header-download-link {
-
   border: 1px solid var(--primary-light);
+}
+
+.close-icon-btn {
+  color: #ffffff;
+  position: absolute;
+  top: 32px;
+  right: 32px;
+}
+
+.close-icon-btn>.close-icon {
+  color: white;
 }
 </style>

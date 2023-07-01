@@ -1,7 +1,7 @@
 import { watch } from "vue";
 
-let i = 0;
 export default function useLogger(ref, name = "ref(" + ref.value + ")") {
+  if (!import.meta.env.DEV) return;
   console.log("watching " + name);
   watch(ref, () => console.log(name + " changed to ", ref.value));
 }

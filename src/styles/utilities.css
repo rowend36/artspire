@@ -3,6 +3,13 @@
   width: 100vw;
   margin-left: calc(50% - 50vw);
 }
+@media (min-width: 768px) {
+  /* Factor in Scroll bars */
+  .w-banner {
+    width: calc(100% + 128px);
+    margin-left: -64px;
+  }
+}
 @media (min-width: 1280px) {
   .w-banner {
     width: 1280px;

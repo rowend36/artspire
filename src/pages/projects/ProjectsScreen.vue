@@ -52,7 +52,11 @@ watch(index, () => {
         </transition>
       </router-view>
       <spacer-view />
-      <social-links />
+      <div class="relative">
+        <div class="absolute" :style="{ bottom: 0, left: 0, right: 0 }">
+          <social-links />
+        </div>
+      </div>
     </div>
   </div>
 </template>
