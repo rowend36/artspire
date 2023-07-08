@@ -20,6 +20,7 @@ const info = reactive({
   numBrandingProjects: 100,
   numWebsiteDesigns: 5,
   numMobileAppDesigns: 2,
+  numArtsAndIllustrations: 5,
   whatsappNumber: "+234 906 1697 773",
   whatsappMessageTemplate: "Hi, Johnson. I'd like to ",
   twitterLink: null,
@@ -46,10 +47,14 @@ if (typeof fetch !== "undefined" && typeof localStorage !== "undefined") {
   }
   fetch(
     queryToUrl(
-      "*[_type=='person']{name,firstName,resumeLink,\
-        description,email,phoneNumber,numBrandingProjects,\
-        numMobileAppDesigns,whatsappNumber,twitterLink,\
-        linkedInLink,instagramLink,photoURL}"
+      `*[_type=='person']{name,firstName,resumeLink,
+        description,email,phoneNumber,
+        "numBrandingProjects":count(*[_type == 'portfolio' && (!defined(types) || "Brand" in types)]),
+        "numMobileAppDesigns":count(*[_type == 'portfolio' && (!defined(types) || "Mobile App" in types)]),
+        "numWebsiteDesigns":count(*[_type == 'portfolio' && (!defined(types) || "UI/UX" in types && !("Mobile App" in types))]),
+        "numArtsAndIllustrations":count(*[_type == 'portfolio' && (!defined(types) || "Art & Illustration" in types)]),
+        whatsappNumber,twitterLink,
+        linkedInLink,instagramLink,photoURL}`
     )
   ).then(async (e) => {
     const x = (await e.json()).result[0];

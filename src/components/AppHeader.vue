@@ -73,13 +73,15 @@ const isMenuOpen = ref(false);
 .nav-bar {
   display: flex;
   align-items: center;
-  position: absolute;
+  position: fixed;
+  z-index: 30;
   top: 0;
   width: 100%;
   left: 0;
   padding-top: 0;
   padding-bottom: 0;
   height: 4rem;
+  background-color: white;
 }
 
 #menu-btn {

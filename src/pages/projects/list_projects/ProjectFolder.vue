@@ -17,7 +17,7 @@ defineProps({
 </template>
 <style scoped>
 .mw-80 {
-  max-width: 65vw;
+  max-width: 80vw;
   margin: auto;
 }
 

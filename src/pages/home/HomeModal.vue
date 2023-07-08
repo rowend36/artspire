@@ -51,7 +51,7 @@ const description = ref("")
   align-items: center;
   justify-content: center;
   background: rgba(0, 7, 44, 0.94);
-  z-index: 30;
+  z-index: 40;
 }
 
 .modal {

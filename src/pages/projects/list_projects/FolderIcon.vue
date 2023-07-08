@@ -19,9 +19,9 @@ defineProps({
       </clipPath>
 
     </defs>
-    <rect width="643" height="643" clip-path="url(#shape)" fill='#dedede'>
+    <rect x="81.5" width="385.5" height="381" clip-path="url(#shape)" fill='#dedede'>
     </rect>
-    <image v-if="image" width="643" height="643" clip-path="url(#shape)"
+    <image v-if="image" x="81.5" width="385.5" height="381" clip-path="url(#shape)"
       :xlink:href="urlFor(image).auto('format').fit('min').width(720).toString()" preserveAspectRatio="xMidYMid slice">
     </image>
   </svg>

@@ -8,6 +8,7 @@ import MyInfo from "../../logic/info";
       <li>Website Design <span class="stat-value">{{ MyInfo.numWebsiteDesigns }}</span></li>
       <li>Mobile App Design <span class="stat-value">{{ MyInfo.numMobileAppDesigns }}</span></li>
       <li>Branding <span class="stat-value">{{ MyInfo.numBrandingProjects }}</span></li>
+      <li>Arts & Illustrations <span class="stat-value">{{ MyInfo.numArtsAndIllustrations }}</span></li>
     </ul>
   </div>
 </template>

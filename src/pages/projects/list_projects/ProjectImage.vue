@@ -9,8 +9,8 @@ const item = computed(() => props.info.item);
 </script>
 
 <template>
-  <div :data-index="info.i + ':' + info.preserveAspect">
-    <sanity-img :src="item.previewImage" class="block hover-zoom p-1 img" />
+  <div :data-index="info.i + ':' + info.preserveAspect" class="p-1">
+    <sanity-img :src="item.previewImage" class="block hover-outline img" />
   </div>
 </template>
 <style scoped>
@@ -25,13 +25,11 @@ div {
   object-position: 50% 25%;
 }
 
-/* div::after {
-  content: attr(data-index);
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  z-index: 100;
-} */
+.hover-outline {
+  border: 2px solid transparent;
+}
+
+.hover-outline:hover {
+  border-color: var(--primary-light);
+}
 </style>

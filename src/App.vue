@@ -10,7 +10,7 @@ import DebugView from './components/DebugView.vue'
   <main>
     <DebugView />
     <router-view v-slot="{ Component }">
-      <transition name="down-up" mode="out-in">
+      <transition name="fade" mode="out-in">
         <div :key="$route.path">
           <component :is="Component" />
         </div>

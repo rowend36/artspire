@@ -1,9 +1,7 @@
-.down-up-enter-active,
 .up-down-enter-active,
 .left-right-enter-active {
   transition: all 0.5s ease-in;
 }
-.down-up-leave-active,
 .left-right-leave-active {
   transition: all 0.5s ease-out;
   min-width: 80%;
@@ -12,8 +10,8 @@
 
 .up-down-leave-from,
 .up-down-enter-to,
-.down-up-leave-from,
-.down-up-enter-to,
+.fade-leave-from,
+.fade-enter-to,
 .left-right-leave-from,
 .left-right-enter-to {
   transform: translateX(0px);
@@ -29,13 +27,15 @@
   opacity: 0.75;
 }
 
-.down-up-leave-to {
-  transform: translateY(100vh);
-  opacity: 0.75;
+.fade-leave-active,
+.fade-enter-active {
+  transition: all 0.3s linear;
 }
-.down-up-enter-from {
-  transform: translateY(100vh);
-  opacity: 0.75;
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-from {
+  opacity: 0;
 }
 
 .up-down-leave-to {
