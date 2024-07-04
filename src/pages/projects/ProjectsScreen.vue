@@ -40,7 +40,7 @@ watch(index, () => {
     <ul class="tabs spaced grotesk font-xl">
       <li v-for=' ( name, i ) of tabs ' :key='name' :class="[' tab', { 'tab-active': name == activeTab }]"
         @click=" setActiveTab(name)">
-        <span class='hover-text' @mouseover="index = i; skip = true">{{ name }}</span>
+        <span class='hover-text' @mouseover="index = i; skip = true">{{ name === "UI/UX"?"Projects":name==="Brand"?"Titbits":name }}</span>
       </li>
       <li class='tab empty-tab'>
       </li>
